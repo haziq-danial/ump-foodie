@@ -13,8 +13,13 @@ class CreateOrderListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order__lists', function (Blueprint $table) {
-            $table->id();
+        Schema::create('order_lists', function (Blueprint $table) {
+            $table->id('order_list');
+            $table->unsignedBigInteger('restaurant_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('order_status');
+            $table->string('adress');
+            $table->float('total_price', 8,2);
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateOrderListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order__lists');
+        Schema::dropIfExists('order_lists');
     }
 }

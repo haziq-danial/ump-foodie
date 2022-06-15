@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRidersTable extends Migration
+class CreateComplaintListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateRidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('riders', function (Blueprint $table) {
-            $table->id('rider_id');
+        Schema::create('complaint_lists', function (Blueprint $table) {
+            $table->id('complaint_list_id');
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('rider_id_no');
+            $table->unsignedBigInteger('rider_id');
+            $table->string('description');
+            $table->string('type');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateRidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riders');
+        Schema::dropIfExists('complaint_lists');
     }
 }

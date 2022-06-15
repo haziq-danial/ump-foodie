@@ -13,7 +13,7 @@
                 <img src="{{ asset('../img/01-Logo UMP_Full Color.png') }}" class="img-size-32 elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ url('/') }}" class="d-block">FOODIE</a>
+                <a href="#" class="d-block">FOODIE</a>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
-                            Manage Order
+                            Manage Complaints
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

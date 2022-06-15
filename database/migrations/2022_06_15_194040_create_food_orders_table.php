@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRidersTable extends Migration
+class CreateFoodOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateRidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('riders', function (Blueprint $table) {
-            $table->id('rider_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('rider_id_no');
+        Schema::create('food_orders', function (Blueprint $table) {
+            $table->id('food_order_id');
+            $table->unsignedBigInteger('order_id');
+            $table->integer('quantity');
+            $table->float('price', 8, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateRidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riders');
+        Schema::dropIfExists('food_orders');
     }
 }

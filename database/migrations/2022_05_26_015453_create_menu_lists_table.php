@@ -14,7 +14,12 @@ class CreateMenuListsTable extends Migration
     public function up()
     {
         Schema::create('menu_lists', function (Blueprint $table) {
-            $table->id();
+            $table->id('menu_id');
+            $table->unsignedBigInteger('restaurant_id');
+            $table->string('food_name');
+            $table->string('category');
+            $table->float('price', 8, 2);
+            $table->integer('food_status');
             $table->timestamps();
         });
     }

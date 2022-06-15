@@ -30,6 +30,7 @@ Route::group(['prefix' => 'manage-restaurant', 'as' => 'manage-restaurant.'], fu
 
     Route::get('/view', [RestaurantController::class, 'index']);
     Route::get('/menu-lists', [RestaurantController::class, 'menuList']);
+    Route::get('/create', [RestaurantController::class, 'create']);
 
 });
 
@@ -58,6 +59,7 @@ Route::group(['prefix' => 'manage-rider', 'as' => 'manage-rider.'], function () 
 Route::group(['prefix' => 'manage-complaint', 'as' => 'manage-complaint.'], function () {
 
     Route::get('/view', [ComplaintController::class, 'index']);
+    Route::get('/create', [ComplaintController::class, 'create']);
 
 });
 

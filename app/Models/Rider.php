@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Rider extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'rider_id';
+
+    protected $fillable = [
+        'user_id',
+        'rider_id_no'
+    ];
 }

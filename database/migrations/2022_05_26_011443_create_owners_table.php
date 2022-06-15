@@ -14,7 +14,9 @@ class CreateOwnersTable extends Migration
     public function up()
     {
         Schema::create('owners', function (Blueprint $table) {
-            $table->id();
+            $table->id('owner_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('owner_id_no');
             $table->timestamps();
         });
     }
