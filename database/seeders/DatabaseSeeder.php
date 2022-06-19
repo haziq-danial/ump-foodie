@@ -8,6 +8,7 @@ use App\Models\Owner;
 use App\Models\Rider;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,14 +21,24 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $admin = User::factory()->admin()->create();
+        
         $customer = User::factory()->customer()->create();
+        $customer->assignRole('customer');
+        
         $owner = User::factory()->owner()->create();
+        $owner->assignRole('restaurant owner');
+        
         $rider = User::factory()->rider()->create();
+        $rider->assignRole('rider');
+        
+        $admin = User::factory()->admin()->create();
+        $admin->assignRole('admin');
+
 
         Admin::factory()->create([
             'user_id' => $admin->user_id,
         ]);
+
 
         Customer::factory()->create([
             'user_id' => $customer->user_id,
