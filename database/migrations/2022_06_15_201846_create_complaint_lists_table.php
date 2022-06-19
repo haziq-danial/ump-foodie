@@ -16,7 +16,7 @@ class CreateComplaintListsTable extends Migration
         Schema::create('complaint_lists', function (Blueprint $table) {
             $table->id('complaint_list_id');
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('cust_id');
             $table->unsignedBigInteger('rider_id');
             $table->string('description');
             $table->string('type');
