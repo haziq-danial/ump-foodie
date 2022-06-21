@@ -17,6 +17,7 @@ class CreateDeliveryListsTable extends Migration
             $table->id('delivery_list_id');
             $table->unsignedBigInteger('rider_id');
             $table->unsignedBigInteger('order_id');
+            $table->integer('delivery_status');
             $table->string('feedback');
             $table->timestamps();
         });

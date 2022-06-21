@@ -17,7 +17,7 @@ class CreateOrderListsTable extends Migration
             $table->id('order_list');
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('cust_id');
-            $table->string('order_status');
+            $table->integer('order_status');
             $table->string('adress');
             $table->float('total_price', 8,2);
             $table->timestamps();

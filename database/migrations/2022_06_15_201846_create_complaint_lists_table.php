@@ -20,7 +20,7 @@ class CreateComplaintListsTable extends Migration
             $table->unsignedBigInteger('rider_id');
             $table->string('description');
             $table->string('type');
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }

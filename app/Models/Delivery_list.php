@@ -14,6 +14,7 @@ class Delivery_list extends Model
     protected $fillable = [
         'rider_id',
         'order_id',
+        'delivery_status',
         'feedback'
     ];
 }

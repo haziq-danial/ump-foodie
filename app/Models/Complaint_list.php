@@ -13,7 +13,7 @@ class Complaint_list extends Model
 
     protected $fillable = [
         'order_id',
-        'user_id',
+        'cust_id',
         'rider_id',
         'description',
         'type',
