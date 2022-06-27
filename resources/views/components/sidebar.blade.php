@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<form id="logout-form" action="#" method="POST" style="display: none;">
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     {{ csrf_field() }}
 </form>
 
@@ -31,19 +31,39 @@
                         </p>
                     </a>
                 </li>
+                @hasanyrole('restaurant owner')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Manage Restaurants
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-restaurant.all') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Restaurants</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endhasanyrole
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
+                        <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
-                            Manage Restaurants
+                            Cart
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-cart.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
+                                <p>My Cart</p>
                             </a>
                         </li>
                     </ul>
@@ -51,15 +71,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Restaurant Details</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Menu Lists</p>
+                                <p>Previous orders</p>
                             </a>
                         </li>
                     </ul>
@@ -93,7 +105,15 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
+                                <p>Make Order</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Upcoming Orders</p>
                             </a>
                         </li>
                     </ul>
