@@ -29,4 +29,9 @@ class Order_list extends Model
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id','restaurant_id');
     }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class, 'cart_id', 'cart_id');
+    }
 }

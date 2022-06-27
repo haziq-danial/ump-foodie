@@ -9,6 +9,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MenuListController;
 use App\Models\Menu_list;
@@ -82,6 +83,11 @@ Route::group(['prefix' => 'manage-cart', 'as' => 'manage-cart.'], function(){
     Route::get('/index', [CartController::class, 'showCart'])->name('index');
 
     Route::get('/checkout', [CartController::class, 'checkoutCart'])->name('checkout');
+});
+
+// manage delivery
+Route::group(['prefix' => 'manage-delivery', 'as' => 'manage-delivery.'], function() {
+    Route::get('/index', [DeliveryController::class, 'index'])->name('index');
 });
 
 // manage rider

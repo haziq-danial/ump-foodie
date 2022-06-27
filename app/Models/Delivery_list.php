@@ -17,5 +17,11 @@ class Delivery_list extends Model
         'delivery_status',
         'feedback'
     ];
+
+
+    public function order()
+    {
+        return $this->belongsTo(Order_list::class, 'order_id', 'order_id');
+    }
 }
 

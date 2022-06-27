@@ -22,4 +22,9 @@ class Cart extends Model
     {
         return $this->hasMany(Order_list::class, 'cart_id', 'cart_id');
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(Customer::class, 'cust_id', 'cust_id');
+    }
 }
