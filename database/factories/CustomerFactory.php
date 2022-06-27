@@ -14,7 +14,8 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 0
+            'user_id' => 0,
+            'address' => 'none'
         ];
     }
 }

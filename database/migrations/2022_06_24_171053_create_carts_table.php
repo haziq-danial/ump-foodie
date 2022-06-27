@@ -17,6 +17,7 @@ class CreateCartsTable extends Migration
             $table->id('cart_id');
             $table->unsignedBigInteger('cust_id');
             $table->integer('cart_status');
+            $table->float('total_price', 8,2);
             $table->timestamps();
         });
     }

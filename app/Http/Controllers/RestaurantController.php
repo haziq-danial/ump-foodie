@@ -4,77 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     public function index()
     {
-        return view('ManageRestaurant.index');
-    }
+        // get owner
+        $user = session('user');
 
-    public function menuList()
-    {
-        return view('ManageRestaurant.menuList');
-    }
+        // get restaurant belongs to owner
+        $restaurants = Restaurant::where('owner_id', $user['owner_id'])->get();
 
+        $count = 0;
+
+        return view('ManageRestaurant.all-restaurant', [
+            'restaurants' => $restaurants,
+            'count' => $count
+        ]);
+    }
 
     public function create()
     {
         return view('ManageRestaurant.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
-        //
+        // get user
+        $user = session('user');
+
+        // get owner id
+        $owner_id = $user['owner_id'];
+
+        // create restaurant
+        $restaurant = new Restaurant;
+        
+        $restaurant->owner_id = $owner_id;
+        $restaurant->restaurant_name = $request->restaurant_name;
+        $restaurant->location = $request->location;
+        $restaurant->contact_number = '01222';
+        $restaurant->opening_time = $request->opening_time;
+        $restaurant->closing_time = $request->closing_time;
+        
+        $restaurant->save();
+
+
+        return redirect()->route('manage-restaurant.all');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Restaurant $restaurant)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Restaurant $restaurant)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Restaurant $restaurant)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Restaurant  $restaurant
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Restaurant $restaurant)
     {
         //

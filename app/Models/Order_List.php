@@ -14,8 +14,19 @@ class Order_list extends Model
     protected $fillable = [
         'restaurant_id',
         'cart_id',
+        'menu_id',
         'order_status',
-        'address',
-        'total_price'
+        'quantity'
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo(Menu_list::class, 'menu_id', 'menu_id');
+    }
+
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id','restaurant_id');
+    }
 }

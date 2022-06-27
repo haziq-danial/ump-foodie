@@ -16,6 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id('cust_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('address');
             $table->timestamps();
         });
     }

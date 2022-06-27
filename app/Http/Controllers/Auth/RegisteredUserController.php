@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
                 $user = User ::create([
                     'full_name' => $request->full_name,
                     'username' => $request->username,
-                    'password' => $request->password,
+                    'password' => Hash::make($request->password),
                     'email' => $request->email,
                     'role_type' => $request->role_type
                 ]);
@@ -83,7 +83,7 @@ class RegisteredUserController extends Controller
                 $user = User ::create([
                     'full_name' => $request->full_name,
                     'username' => $request->username,
-                    'password' => $request->password,
+                    'password' => Hash::make($request->password),
                     'email' => $request->email,
                     'role_type' => $request->role_type
                 ]);
@@ -109,7 +109,7 @@ class RegisteredUserController extends Controller
                 $user = User ::create([
                     'full_name' => $request->full_name,
                     'username' => $request->username,
-                    'password' => $request->password,
+                    'password' => Hash::make($request->password),
                     'email' => $request->email,
                     'role_type' => $request->role_type
                 ]);
@@ -134,7 +134,7 @@ class RegisteredUserController extends Controller
                 $user = User ::create([
                     'full_name' => $request->full_name,
                     'username' => $request->username,
-                    'password' => $request->password,
+                    'password' => Hash::make($request->password),
                     'email' => $request->email,
                     'role_type' => $request->role_type
                 ]);

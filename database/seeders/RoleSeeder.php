@@ -25,5 +25,34 @@ class RoleSeeder extends Seeder
         $restaurant_owner = Role::create(['name' => 'restaurant owner']);
         $rider = Role::create(['name' => 'rider']);
 
+
+        // manage restaurant
+        Permission::create(['name' => 'manage restaurant']);
+        Permission::create(['name' => 'add restaurant']);
+        Permission::create(['name' => 'edit restaurant']);
+        Permission::create(['name' => 'delete restaurant']);
+
+        // manage menu
+        Permission::create(['name' => 'manage menu']);
+        Permission::create(['name' => 'add menu']);
+        Permission::create(['name' => 'edit menu']);
+        Permission::create(['name' => 'delete menu']);
+
+        // manage order
+
+        // manage delivery
+
+        // manage user
+
+        $restaurant_owner->givePermissionTo('manage restaurant');
+        $restaurant_owner->givePermissionTo('add restaurant');
+        $restaurant_owner->givePermissionTo('edit restaurant');
+        $restaurant_owner->givePermissionTo('delete restaurant');
+
+        $restaurant_owner->givePermissionTo('manage menu');
+        $restaurant_owner->givePermissionTo('add menu');
+        $restaurant_owner->givePermissionTo('edit menu');
+        $restaurant_owner->givePermissionTo('delete menu');
+
     }
 }

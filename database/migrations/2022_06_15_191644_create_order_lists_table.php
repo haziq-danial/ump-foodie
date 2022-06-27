@@ -16,10 +16,10 @@ class CreateOrderListsTable extends Migration
         Schema::create('order_lists', function (Blueprint $table) {
             $table->id('order_list');
             $table->unsignedBigInteger('restaurant_id');
+            $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('cart_id');
             $table->integer('order_status');
-            $table->string('adress');
-            $table->float('total_price', 8,2);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
