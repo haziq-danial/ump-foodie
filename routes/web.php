@@ -88,6 +88,12 @@ Route::group(['prefix' => 'manage-cart', 'as' => 'manage-cart.'], function(){
 // manage delivery
 Route::group(['prefix' => 'manage-delivery', 'as' => 'manage-delivery.'], function() {
     Route::get('/index', [DeliveryController::class, 'index'])->name('index');
+
+    Route::get('/select-delivery/{delivery_list_id}', [DeliveryController::class, 'selectOrder'])->name('select-order');
+
+    Route::get('/my-deliveries', [DeliveryController::class, 'myDeliveries'])->name('my-deliveries');
+
+    Route::get('/complete-delivery/{delivery_list_id}', [DeliveryController::class, 'completeDelivery'])->name('complete-delivery');
 });
 
 // manage rider

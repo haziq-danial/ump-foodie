@@ -23,5 +23,10 @@ class Delivery_list extends Model
     {
         return $this->belongsTo(Order_list::class, 'order_id', 'order_id');
     }
+
+    public function rider()
+    {
+        return $this->belongsTo(Rider::class, 'rider_id', 'rider_id');
+    }
 }
 

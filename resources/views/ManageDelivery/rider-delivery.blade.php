@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 @endsection
 
-@section('title', 'Available Deliveries')
+@section('title', 'My Deliveries')
     
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Available Deliveries</h1>
+                    <h1>My Deliveries</h1>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" href="{{ route('manage-delivery.select-order', $delivery->delivery_list_id) }}">Select Delivery</a>
+                                            <a class="dropdown-item" href="{{ route('manage-delivery.complete-delivery', $delivery->delivery_list_id) }}">Complete Delivery</a>
                                         </div>
                                     </div>
                                 </td>
