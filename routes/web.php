@@ -3,12 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderListController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ComplaintController;
-
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MenuListController;
+use App\Models\Menu_list;
+use App\Models\Order_list;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +32,32 @@ Route::get('/', function () {
 // manage restaurant
 Route::group(['prefix' => 'manage-restaurant', 'as' => 'manage-restaurant.'], function () {
 
-    Route::get('/view', [RestaurantController::class, 'index']);
-    Route::get('/menu-lists', [RestaurantController::class, 'menuList']);
-    Route::get('/create', [RestaurantController::class, 'create']);
+    Route::get('/view', [RestaurantController::class, 'index'])->name('all');
+    Route::get('/view/{restaurant_id}', [RestaurantController::class, 'view'])->name('view');
+    Route::get('/create', [RestaurantController::class, 'create'])->name('create');
+    
+    Route::post('/add', [RestaurantController::class, 'store'])->name('store');
+    // Route::post('/update/{restaurant_id}'. [RestaurantController::class, 'update']);
+    // Route::get('/delete/{restaurant_id}', [RestaurantController::class]);
+
+    // Route::get('/')
+
+});
+
+
+// manage menu
+Route::group(['prefix' => 'manage-menu', 'as' => 'manage-menu.'], function () {
+    
+    Route::get('/index', [MenuListController::class, 'index'])->name('by-restaurant');
+
+    Route::get('/view/{restaurant_id}', [MenuListController::class, 'viewMenu'])->name('view');
+    Route::post('/add-menu', [MenuListController::class, 'store'])->name('add');
+
+    Route::get('/edit-menu/{restaurant_id}', [MenuListController::class, 'edit']);
+    Route::post('/update', [MenuListController::class, 'update']);
+
+    Route::get('/delete-menu/{restaurant_id}', [MenuListController::class, 'destroy']);
+
 
 });
 
@@ -44,7 +71,15 @@ Route::group(['prefix' => 'manage-user', 'as' => 'manage-user.'], function () {
 // manage order
 Route::group(['prefix' => 'manage-order', 'as' => 'manage-order.'], function () {
 
-    Route::get('/view', [OrderListController::class, 'index']);
+    Route::get('/index', [OrderListController::class, 'index'])->name('index');
+
+    Route::get('/cart/{menu_id}', [OrderListController::class, 'addToCart'])->name('add-cart');
+
+});
+
+// manage cart
+Route::group(['prefix' => 'manage-cart', 'as' => 'manage-cart.'], function(){
+    Route::get('/index', [CartController::class, 'showCart'])->name('index');
 
 });
 
@@ -52,6 +87,10 @@ Route::group(['prefix' => 'manage-order', 'as' => 'manage-order.'], function () 
 Route::group(['prefix' => 'manage-rider', 'as' => 'manage-rider.'], function () {
 
     Route::get('/view', [RiderController::class, 'index']);
+
+    Route::post('/add', [RestaurantController::class, 'store']);
+    // Route::post('/update/{rider_id}'. [RestaurantController::class, 'update']);
+    // Route::get('/delete/{rider_id}', [RestaurantController::class]);
 
 });
 
@@ -61,12 +100,14 @@ Route::group(['prefix' => 'manage-complaint', 'as' => 'manage-complaint.'], func
     Route::get('/view', [ComplaintController::class, 'index']);
     Route::get('/create', [ComplaintController::class, 'create']);
 
+    Route::post('/add', [RestaurantController::class, 'store']);
+    // Route::post('/update/{complaint_list_id}'. [RestaurantController::class, 'update']);
+    // Route::get('/delete/{complaint_list_id}', [RestaurantController::class]);
+
 });
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [IndexController::class, 'index'])->name('home');
 
 require __DIR__.'/auth.php';
