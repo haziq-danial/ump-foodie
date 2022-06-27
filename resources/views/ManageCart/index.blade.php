@@ -19,10 +19,10 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <button type="button" class="btn btn-block btn-success">
+                            <a href="{{ route('manage-cart.checkout') }}" class="btn btn-success">
                                 <i class="fa fa-shopping-cart"></i>
                                 Proceed to Checkout
-                            </button>
+                            </a>
                         </li>
                     </ol>
                 </div>

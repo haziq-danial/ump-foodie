@@ -14,7 +14,7 @@ class CreateOrderListsTable extends Migration
     public function up()
     {
         Schema::create('order_lists', function (Blueprint $table) {
-            $table->id('order_list');
+            $table->id('order_id');
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('cart_id');

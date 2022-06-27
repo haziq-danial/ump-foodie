@@ -81,6 +81,7 @@ Route::group(['prefix' => 'manage-order', 'as' => 'manage-order.'], function () 
 Route::group(['prefix' => 'manage-cart', 'as' => 'manage-cart.'], function(){
     Route::get('/index', [CartController::class, 'showCart'])->name('index');
 
+    Route::get('/checkout', [CartController::class, 'checkoutCart'])->name('checkout');
 });
 
 // manage rider
