@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Constants\CartStatus;
+use App\Classes\Constants\DeliveryStatus;
 use App\Classes\Constants\OrderStatus;
 use App\Models\Cart;
+use App\Models\Delivery_list;
 use App\Models\Menu_list;
 use App\Models\Order_List;
 use Illuminate\Http\Request;
@@ -75,33 +77,43 @@ class OrderListController extends Controller
         return redirect()->route('manage-order.index');
     }
 
-    public function checkout()
+
+    public function upcomingOrder()
     {
-        # code...
+        // get cust model
+        $cust = session('user');
+
+        $cart = Cart::where('cust_id', $cust['cust_id'])
+                        ->where('cart_status', CartStatus::CHECKOUT)
+                        ->first();
+
+
+        $delivery_lists = Delivery_list::with(['order', 'rider'])
+                                        ->where('delivery_status', DeliveryStatus::PREPARED)
+                                        ->get();
+
+        return view('ManageOrder.upcoming', [
+            'delivery_lists' => $delivery_lists,
+            'count' => 1
+        ]);
     }
 
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order_List  $order_List
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order_List $order_List)
+    public function previousOrder()
     {
-        //
-    }
+        // get cust model
+        $cust = session('user');
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order_List  $order_List
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order_List $order_List)
-    {
-        //
+        $cart = Cart::where('cust_id', $cust['cust_id'])
+                        ->where('cart_status', CartStatus::CHECKOUT)
+                        ->first();
+        
+        $delivery_lists = Delivery_list::with(['order', 'rider'])
+                                        ->where('delivery_status', DeliveryStatus::COMPLETED)
+                                        ->get();
+        
+        return view('ManageOrder.completed', [
+            'delivery_lists' => $delivery_lists,
+            'count' => 1
+        ]);
     }
 }

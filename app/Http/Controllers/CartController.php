@@ -79,4 +79,6 @@ class CartController extends Controller
 
         return redirect()->route('manage-cart.index');
     }
+
+    
 }

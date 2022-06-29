@@ -67,14 +67,6 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Previous orders</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -103,7 +95,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-delivery.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>View Deliveries</p>
                             </a>
@@ -111,9 +103,17 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-delivery.my-deliveries')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>My Deliveries</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('manage-delivery.previous') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Previous Deliveries</p>
                             </a>
                         </li>
                     </ul>
@@ -128,7 +128,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-order.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Make Order</p>
                             </a>
@@ -136,9 +136,17 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-order.upcoming') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Upcoming Orders</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('manage-order.previous') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Completed Orders</p>
                             </a>
                         </li>
                     </ul>

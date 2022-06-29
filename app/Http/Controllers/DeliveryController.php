@@ -63,4 +63,21 @@ class DeliveryController extends Controller
 
         return redirect()->route('manage-delivery.my-deliveries');
     }
+
+    public function previousDelivery()
+    {
+        // get rider model
+        $rider = session('user');
+
+        $deliveries = Delivery_list::with(['rider', 'order'])
+                                    ->where('rider_id', $rider['rider_id'])
+                                    ->where('delivery_status', DeliveryStatus::COMPLETED)
+                                    ->get();
+
+        $count = 1;
+        return view('ManageDelivery.completed', [
+            'deliveries' => $deliveries,
+            'count' => $count
+        ]);
+    }
 }

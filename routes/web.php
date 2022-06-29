@@ -76,18 +76,26 @@ Route::group(['prefix' => 'manage-order', 'as' => 'manage-order.'], function () 
 
     Route::get('/cart/{menu_id}', [OrderListController::class, 'addToCart'])->name('add-cart');
 
+    
+    Route::get('/upcoming', [OrderListController::class, 'upcomingOrder'])->name('upcoming');
+    Route::get('/previous', [OrderListController::class, 'previousOrder'])->name('previous');
 });
 
 // manage cart
 Route::group(['prefix' => 'manage-cart', 'as' => 'manage-cart.'], function(){
+
     Route::get('/index', [CartController::class, 'showCart'])->name('index');
 
     Route::get('/checkout', [CartController::class, 'checkoutCart'])->name('checkout');
+
+
 });
 
 // manage delivery
 Route::group(['prefix' => 'manage-delivery', 'as' => 'manage-delivery.'], function() {
     Route::get('/index', [DeliveryController::class, 'index'])->name('index');
+
+    Route::get('/previous', [DeliveryController::class, 'previousDelivery'])->name('previous');
 
     Route::get('/select-delivery/{delivery_list_id}', [DeliveryController::class, 'selectOrder'])->name('select-order');
 

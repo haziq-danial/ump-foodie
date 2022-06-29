@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 @endsection
 
-@section('title', 'Order Lists')
+@section('title', 'Completed orders')
     
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Delivery Lists</h1>
+                    <h1>Completed orders</h1>
                 </div>
             </div>
         </div>
@@ -23,7 +23,6 @@
     <section class="content">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Order Lists</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -40,18 +39,32 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
-                            <th>Address</th>    
+                            <th>Picked up by</th>
+                            <th class="text-center">Action</th>
                         </tr>    
                     </thead>    
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Test</td>
-                            <td>34.4</td>
-                            <td>4</td>
-                            <td>122</td>
-                            <td>test Address</td>
-                        </tr>
+                        @foreach ($delivery_lists as $delivery)
+                            <tr>
+                                <td>{{ $count++ }}</td>
+                                <td>{{ $delivery->order->menu->food_name }}</td>
+                                <td>{{ $delivery->order->menu->price }}</td>
+                                <td>{{ $delivery->order->quantity }}</td>
+                                <td>{{ $delivery->order->menu->price }}</td>
+                                <td>{{ $delivery->rider->user->full_name }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary">Action</button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" href="{{ route('manage-order.add-cart', 0) }}">Manage complaint</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>  
             </div>
