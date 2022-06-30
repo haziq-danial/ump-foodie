@@ -88,9 +88,11 @@ class OrderListController extends Controller
                         ->first();
 
 
-        $delivery_lists = Delivery_list::with(['order', 'rider'])
-                                        ->where('delivery_status', DeliveryStatus::PREPARED)
+        $delivery_lists = Order_List::with(['menu', 'restaurant', 'delivery'])
+                                        ->where('cart_id', $cart->cart_id)
+                                        ->where('order_status', '!=', OrderStatus::DELIVERED)
                                         ->get();
+        
 
         return view('ManageOrder.upcoming', [
             'delivery_lists' => $delivery_lists,
@@ -107,9 +109,10 @@ class OrderListController extends Controller
                         ->where('cart_status', CartStatus::CHECKOUT)
                         ->first();
         
-        $delivery_lists = Delivery_list::with(['order', 'rider'])
-                                        ->where('delivery_status', DeliveryStatus::COMPLETED)
-                                        ->get();
+        $delivery_lists = Order_List::with(['menu', 'restaurant', 'delivery'])
+                        ->where('cart_id', $cart->cart_id)
+                        ->where('order_status', OrderStatus::DELIVERED)
+                        ->get();
         
         return view('ManageOrder.completed', [
             'delivery_lists' => $delivery_lists,

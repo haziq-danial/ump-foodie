@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint_list;
 use App\Models\Complaints;
+use App\Models\Delivery_list;
+use App\Models\Order_list;
 use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
     
-    public function index()
+    public function view($delivery_list_id)
     {
-        return view('ManageComplaints.index');
+        $delivery = Delivery_list::find($delivery_list_id);
+
+
+        return view('ManageComplaints.view',[
+            'delivery' => $delivery
+        ]);
     }
 
     public function create()
@@ -30,46 +38,12 @@ class ComplaintController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Complaints  $complaints
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Complaints $complaints)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Complaints  $complaints
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Complaints $complaints)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Complaints  $complaints
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Complaints $complaints)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Complaints  $complaints
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Complaints $complaints)
+    public function destroy(Request $request)
     {
         //
     }

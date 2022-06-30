@@ -118,8 +118,8 @@ Route::group(['prefix' => 'manage-rider', 'as' => 'manage-rider.'], function () 
 // manage complaint
 Route::group(['prefix' => 'manage-complaint', 'as' => 'manage-complaint.'], function () {
 
-    Route::get('/view', [ComplaintController::class, 'index']);
-    Route::get('/create', [ComplaintController::class, 'create']);
+    Route::get('/view/{delivery_list_id}', [ComplaintController::class, 'view'])->name('view');
+    Route::get('/create', [ComplaintController::class, 'create'])->name('create');
 
     Route::post('/add', [RestaurantController::class, 'store']);
     // Route::post('/update/{complaint_list_id}'. [RestaurantController::class, 'update']);

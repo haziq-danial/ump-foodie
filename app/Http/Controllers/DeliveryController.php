@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Constants\DeliveryStatus;
+use App\Classes\Constants\OrderStatus;
 use App\Models\Delivery_list;
 use Illuminate\Http\Request;
 
@@ -56,9 +57,12 @@ class DeliveryController extends Controller
 
     public function completeDelivery($delivery_list_id)
     {
-        $delivery = Delivery_list::find($delivery_list_id);
+        $delivery = Delivery_list::with('order')->find($delivery_list_id);
 
         $delivery->delivery_status = DeliveryStatus::COMPLETED;
+        $delivery->order->order_status = OrderStatus::DELIVERED;
+
+        $delivery->order->save();
         $delivery->save();
 
         return redirect()->route('manage-delivery.my-deliveries');

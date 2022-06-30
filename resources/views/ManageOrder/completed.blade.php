@@ -47,11 +47,11 @@
                         @foreach ($delivery_lists as $delivery)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $delivery->order->menu->food_name }}</td>
-                                <td>{{ $delivery->order->menu->price }}</td>
-                                <td>{{ $delivery->order->quantity }}</td>
-                                <td>{{ $delivery->order->menu->price }}</td>
-                                <td>{{ $delivery->rider->user->full_name }}</td>
+                                <td>{{ $delivery->menu->food_name }}</td>
+                                <td>{{ $delivery->menu->price }}</td>
+                                <td>{{ $delivery->quantity }}</td>
+                                <td>{{ $delivery->menu->price }}</td>
+                                <td>{{ $delivery->delivery->rider->user->full_name }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary">Action</button>
@@ -59,7 +59,7 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" href="{{ route('manage-order.add-cart', 0) }}">Manage complaint</a>
+                                            <a class="dropdown-item" href="{{ route('manage-complaint.view', $delivery->delivery->delivery_list_id) }}">Manage complaint</a>
                                         </div>
                                     </div>
                                 </td>

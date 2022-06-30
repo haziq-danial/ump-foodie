@@ -47,12 +47,12 @@
                         @foreach ($delivery_lists as $delivery)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $delivery->order->menu->food_name }}</td>
-                                <td>{{ $delivery->order->menu->price }}</td>
-                                <td>{{ $delivery->order->quantity }}</td>
-                                <td>{{ $delivery->order->menu->price }}</td>
-                                @if (!is_null($delivery->rider))
-                                    <td>{{ $delivery->rider->user->full_name }}</td>
+                                <td>{{ $delivery->menu->food_name }}</td>
+                                <td>{{ $delivery->menu->price }}</td>
+                                <td>{{ $delivery->quantity }}</td>
+                                <td>{{ $delivery->menu->price }}</td>
+                                @if (!is_null($delivery->delivery->rider))
+                                    <td>{{ $delivery->delivery->rider->user->full_name }}</td>
                                     
                                 @else
                                 
