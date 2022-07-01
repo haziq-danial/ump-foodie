@@ -31,7 +31,7 @@
                         </p>
                     </a>
                 </li>
-                @hasanyrole('restaurant owner')
+                @can('manage restaurant')
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>
@@ -49,125 +49,120 @@
                             </li>
                         </ul>
                     </li>
-                @endhasanyrole
+                @endcan
+                
+                @can('manage order')
+                
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>
+                                Cart
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-cart.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>My Cart</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-cart"></i>
-                        <p>
-                            Cart
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-cart.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>My Cart</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-biking"></i>
-                        <p>
-                            Manage Rider
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-truck-loading"></i>
-                        <p>
-                            Manage Deliveries
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-delivery.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View Deliveries</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-delivery.my-deliveries')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>My Deliveries</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-delivery.previous') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Previous Deliveries</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Manage Order
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-order.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Make Order</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-order.upcoming') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Upcoming Orders</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('manage-order.previous') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Completed Orders</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Manage Complaints
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>View</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('manage delivery')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-truck-loading"></i>
+                            <p>
+                                Manage Deliveries
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-delivery.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View Deliveries</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-delivery.my-deliveries')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>My Deliveries</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-delivery.previous') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Previous Deliveries</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('manage order')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Manage Order
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-order.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Make Order</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-order.upcoming') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Upcoming Orders</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-order.previous') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Completed Orders</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('manage complaint')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Manage Complaints
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('manage-complaint.rider-view')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>View</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 
                 <li class="nav-item">
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">

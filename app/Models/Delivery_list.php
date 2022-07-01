@@ -28,5 +28,10 @@ class Delivery_list extends Model
     {
         return $this->belongsTo(Rider::class, 'rider_id', 'rider_id');
     }
+
+    public function complaints()
+    {
+        return $this->hasOne(Complaint_list::class, 'delivery_list_id', 'delivery_list_id');
+    }
 }
 

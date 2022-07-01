@@ -44,18 +44,9 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>View Proposal</h1>
+                    <h1>Manage Complaint</h1>
                 </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#approval-status">
-                                    <i class="fa fa-plus"></i>
-                                    Set Approval Status
-                                </button>
-                            </li>
-                        </ol>
-                    </div>
+                    
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -65,7 +56,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Proposal Details</h3>
+                        <h3 class="card-title">Complaint Details</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -75,14 +66,44 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputName">Project Name</label>
-                            <p>{{ $title }}</p>
+                            <label for="inputName">Description</label>
+                            @if (!is_null($delivery->complaints))
+                                <p>{{ $delivery->complaints->description }}</p>
+                            @else
+                                <p>None</p>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="">type</label>
+                            @if (!is_null($delivery->complaints))
+                                <p>{{ $delivery->complaints->type }}</p>
+                            @else
+                                <p>None</p>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            @if (!is_null($delivery->complaints))
+                                <p>{{ $delivery->complaints->status }}</p>
+                            @else
+                                <p>None</p>
+                            @endif
                         </div>
                         
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                @hasanyrole('customer')
+                                    @if (!is_null($delivery->complaints))
+                                        <a href="{{ route('manage-complaint.create', $delivery->delivery_list_id) }}" class="btn btn-warning">Edit Complaint</a>
+                                    @else
+                                        <a href="{{ route('manage-complaint.create', $delivery->delivery_list_id) }}" class="btn btn-primary">Make a Complaint</a>
+                                    @endif
+                                @endhasanyrole
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card -->

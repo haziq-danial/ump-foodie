@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 @endsection
 
-@section('title', 'Previous Deliveries')
+@section('title', 'Manage Rider Complaints')
     
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Previous Deliveries</h1>
+                    <h1>Manage Rider Complaints</h1>
                 </div>
             </div>
         </div>
@@ -35,26 +35,23 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Food Name</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Address</th>
-                            <th>Quantity</th>
+                            <th>Item</th>
                             <th>Price</th>
-                            <th style="width: 2%" class="text-center">Action</th>    
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Delivered to</th>
+                            <th class="text-center">Action</th>
                         </tr>    
                     </thead>    
                     <tbody>
-                        @foreach ($deliveries as $delivery)
+                        @foreach ($complaints as $complaint)
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $delivery->order->menu->food_name }}</td>
-                                <td>{{ $delivery->order->menu->restaurant->restaurant_name }}</td>
-                                <td>{{ $delivery->order->cart->owner->user->full_name }}</td>
-                                <td>{{ $delivery->order->cart->owner->address }}</td>
-                                <td>{{ $delivery->order->quantity }}</td>
-                                <td>{{ $delivery->order->menu->price }}</td>
-
+                                <td>{{ $complaint->delivery->order->menu->food_name }}</td>
+                                <td>{{ $complaint->delivery->order->menu->price }}</td>
+                                <td>{{ $complaint->delivery->order->quantity }}</td>
+                                <td>{{ $complaint->delivery->order->menu->price }}</td>
+                                <td>{{ $complaint->customer->user->full_name }}</td>
                                 
                                 <td class="text-center">
                                     <div class="btn-group">
@@ -63,7 +60,7 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" href="{{ route('manage-complaint.view', $delivery->delivery_list_id) }}">View Complaint</a>
+                                            <a class="dropdown-item" href="{{ route('manage-complaint.view', $complaint->delivery_list_id) }}">View Complaint</a>
                                         </div>
                                     </div>
                                 </td>
@@ -86,4 +83,4 @@
 
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-@endsection 
+@endsection

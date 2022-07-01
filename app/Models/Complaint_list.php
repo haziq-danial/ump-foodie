@@ -24,4 +24,9 @@ class Complaint_list extends Model
     {
         return $this->belongsTo(Delivery_list::class, 'delivery_list_id', 'delivery_list_id');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'cust_id', 'cust_id');
+    }
 }

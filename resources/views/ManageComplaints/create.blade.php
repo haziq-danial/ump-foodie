@@ -28,15 +28,17 @@
                         <div class="card-header">
                             <h3 class="card-title">Complaint Form</h3>
                         </div>
-                        <form action="#">
+                        <form action="{{ route('manage-complaint.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="delivery_list_id" value={{ $delivery_list_id }}>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="inputName">Complaint Title</label>
-                                    <input id="inputName" type="text" name="" class="form-control">
+                                    <label>Type</label>
+                                    <input type="text" class="form-control" name="type">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputName">Description</label>
-                                    <textarea id="inputObjective" name="objective" class="form-control" rows="6"></textarea>
+                                    <textarea name="description" class="form-control" rows="6"></textarea>
                                 </div>
                                 
                             </div>
@@ -44,7 +46,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-5">
                                         <a href="#" class="btn btn-secondary">Cancel</a>
-                                        <input id="submitForm" type="submit" value="Register"
+                                        <input id="submitForm" type="submit" value="Submit"
                                                 class="btn btn-primary float-right">
                                     </div>
                                 </div>
